@@ -6,26 +6,19 @@ xmlhttp.send();
 xmlhttp.onreadystatechange = function(){
     if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
 
-        //document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
         var xmlDoc = xmlhttp.responseXML;
 
+        //Get information i want to display from finnkino
         var titles = xmlDoc.getElementsByTagName("Title");
         var theaters = xmlDoc.getElementsByTagName("Theatre");
         var image = xmlDoc.getElementsByTagName("EventSmallImagePortrait");
         var date = xmlDoc.getElementsByTagName("dttmShowStart");
-
-
-        //var selection = document.getElementById("theaterSelection");
-        //for(i=0; i < theaters.length; i++){
-            //var option = document.createElement('option');
-            //option.setAttribute('value', theaters[i].value);
-            //option.appendChild(document.createTextNode(theaters[i].textContent));
-            //selection.appendChild(option);
-        //}
         
+        //first empty table then build new one with selected information
         var txt ="";
         txt = "<table border='2px solid orange'>";
         for(i=0; i < titles.length; i++){
+
             //change time format to readable form
             var time = new Date(date[i].childNodes[0].nodeValue);
             var t = time.toLocaleString();
@@ -35,7 +28,7 @@ xmlhttp.onreadystatechange = function(){
         }
 
         txt += "</table>";
-
+        //move information to the website
         document.getElementById("myDiv").innerHTML = txt;
 
     }
@@ -52,7 +45,7 @@ function loadXMLfile(){
 
     if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
 
-        //document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+
         var xmlDoc = xmlhttp.responseXML;
 
         var titles = xmlDoc.getElementsByTagName("Title");
@@ -60,6 +53,7 @@ function loadXMLfile(){
         var date = xmlDoc.getElementsByTagName("dttmShowStart");
         var image = xmlDoc.getElementsByTagName("EventSmallImagePortrait");
 
+        //first empty table then build new one with selected information
         var txt = "";
         txt = "<table border='2px solid orange'>";
         
